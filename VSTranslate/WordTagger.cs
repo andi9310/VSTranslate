@@ -1,23 +1,30 @@
 ﻿//------------------------------------------------------------------------------
-// <copyright file="Translator.cs" company="Company">
+// <copyright file="WordTagger.cs" company="Company">
 //     Copyright (c) Company.  All rights reserved.
 // </copyright>
 //------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 using Microsoft.VisualStudio.Text.Formatting;
+using Microsoft.VisualStudio.Text.Operations;
 
 namespace VSTranslate
 {
     /// <summary>
-    /// Translator places red boxes behind all the "a"s in the editor window
+    /// WordTagger places red boxes behind all the "a"s in the editor window
     /// </summary>
-    internal sealed class Translator
+    internal sealed class WordTagger
     {
+        private ITextStructureNavigator TextStructureNavigator { get; set; }
+        private readonly glosbeClient.GlosbeClient _client = new glosbeClient.GlosbeClient();
+
         /// <summary>
         /// The layer of the adornment.
         /// </summary>
@@ -39,17 +46,18 @@ namespace VSTranslate
         private readonly Pen pen;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Translator"/> class.
+        /// Initializes a new instance of the <see cref="WordTagger"/> class.
         /// </summary>
         /// <param name="view">Text view to create the adornment for</param>
-        public Translator(IWpfTextView view)
+        public WordTagger(IWpfTextView view, Workspace myWorkSpace, ITextStructureNavigator textStructureNavigator)
         {
             if (view == null)
             {
                 throw new ArgumentNullException("view");
             }
+            this.TextStructureNavigator = textStructureNavigator;
 
-            this.layer = view.GetAdornmentLayer("Translator");
+            this.layer = view.GetAdornmentLayer("WordTagger");
 
             this.view = view;
             this.view.LayoutChanged += this.OnLayoutChanged;
@@ -87,12 +95,46 @@ namespace VSTranslate
         /// <param name="line">Line to add the adornments</param>
         private void CreateVisuals(ITextViewLine line)
         {
+            var words = new List<TextExtent>();
             IWpfTextViewLineCollection textViewLines = this.view.TextViewLines;
-
             // Loop through each character, and place a box around any 'a'
-            for (int charIndex = line.Start; charIndex < line.End; charIndex++)
+            for (var charIndex = line.Start; charIndex < line.End;)
             {
-                if (this.view.TextSnapshot[charIndex] == 'a')
+                TextExtent word = TextStructureNavigator.GetExtentOfWord(charIndex);
+
+                // If we've selected something not worth highlighting, we might have
+                // missed a "word" by a little bit
+                if (WordExtentIsValid(charIndex, word))
+                { 
+                    words.Add(word);
+                    charIndex = charIndex.Add(word.Span.Length);
+                    var trans = _client.GetTranslations(word.Span.GetText().ToLower());
+                    if (trans.Any()) continue;
+                    var geometry = textViewLines.GetMarkerGeometry(word.Span);
+                    var drawing = new GeometryDrawing(this.brush, this.pen, geometry);
+                    drawing.Freeze();
+
+                    var drawingImage = new DrawingImage(drawing);
+                    drawingImage.Freeze();
+
+                    var image = new Image
+                    {
+                        Source = drawingImage,
+                    };
+
+                    // Align the image with the top of the bounds of the text geometry
+                    Canvas.SetLeft(image, geometry.Bounds.Left);
+                    Canvas.SetTop(image, geometry.Bounds.Top);
+
+                    this.layer.AddAdornment(AdornmentPositioningBehavior.TextRelative, word.Span, null, image, null);
+                }
+                else
+                {
+                    charIndex = charIndex.Add(1);
+                }
+
+
+                /* if (this.view.TextSnapshot[charIndex] == 'a')
                 {
                     SnapshotSpan span = new SnapshotSpan(this.view.TextSnapshot, Span.FromBounds(charIndex, charIndex + 1));
                     Geometry geometry = textViewLines.GetMarkerGeometry(span);
@@ -115,8 +157,13 @@ namespace VSTranslate
 
                         this.layer.AddAdornment(AdornmentPositioningBehavior.TextRelative, span, null, image, null);
                     }
-                }
+                }*/
             }
+
+        }
+        static bool WordExtentIsValid(SnapshotPoint currentRequest, TextExtent word)
+        {
+            return word.IsSignificant && currentRequest.Snapshot.GetText(word.Span).Any(c => char.IsLetter(c));
         }
     }
 }
