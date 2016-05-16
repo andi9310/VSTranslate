@@ -1,19 +1,9 @@
-/***************************************************************************
- 
-Copyright (c) Microsoft Corporation. All rights reserved.
-THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
-ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
-IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
-PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
-
-***************************************************************************/
-
 using Microsoft.VisualStudio.Shell;
 using System;
 using System.ComponentModel.Design;
 using System.Globalization;
 
-namespace Microsoft.Samples.VisualStudio.MenuCommands
+namespace VSTranslate
 {
     /// <summary>
     /// This class implements a very specific type of command: this command will count the
@@ -22,7 +12,7 @@ namespace Microsoft.Samples.VisualStudio.MenuCommands
     internal class DynamicTextCommand : OleMenuCommand
     {
         // Counter of the clicks.
-        private int clickCount;
+        private int _clickCount;
 
         /// <summary>
         /// This is the function that is called when the user clicks on the menu command.
@@ -31,10 +21,10 @@ namespace Microsoft.Samples.VisualStudio.MenuCommands
         /// </summary>
         private static void ClickCallback(object sender, EventArgs args)
         {
-            DynamicTextCommand cmd = sender as DynamicTextCommand;
+            var cmd = sender as DynamicTextCommand;
             if (null != cmd)
             {
-                cmd.clickCount++;
+                cmd._clickCount++;
             }
         }
 
@@ -42,7 +32,7 @@ namespace Microsoft.Samples.VisualStudio.MenuCommands
         /// Creates a new DynamicTextCommand object with a specific CommandID and base text.
         /// </summary>
         public DynamicTextCommand(CommandID id, string text) :
-            base(new EventHandler(ClickCallback), id, text)
+            base(ClickCallback, id, text)
         {
         }
 
@@ -54,7 +44,7 @@ namespace Microsoft.Samples.VisualStudio.MenuCommands
         {
             get
             {
-                return string.Format(CultureInfo.CurrentCulture, VSPackage.ResourceManager.GetString("DynamicTextFormat"), base.Text, clickCount);
+                return string.Format(CultureInfo.CurrentCulture, VSPackage.ResourceManager.GetString("DynamicTextFormat"), base.Text, _clickCount);
             }
             set { base.Text = value; }
         }

@@ -151,7 +151,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
         <Icon guid="ImageCatalogGuid" id="GoToNext"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <ButtonText>C# Command Sample</ButtonText>
+          <ButtonText>C# Command Sample eloo</ButtonText>
         </Strings>
       </Button>
 
@@ -164,7 +164,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
         <Icon guid="ImageCatalogGuid" id="GenericChart"/>
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <ButtonText>C# Sample Graph Command elo</ButtonText>
+          <ButtonText>C# Sample Graph Command elo emo</ButtonText>
         </Strings>
       </Button>
 

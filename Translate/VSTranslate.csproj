@@ -26,8 +26,8 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microsoft.Samples.VisualStudio.MenuCommands</RootNamespace>
-    <AssemblyName>Microsoft.Samples.VisualStudio.MenuAndCommands</AssemblyName>
+    <RootNamespace>VSTranslate</RootNamespace>
+    <AssemblyName>VSTranslate</AssemblyName>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
@@ -58,14 +58,11 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Build.Framework" />
-    <Reference Include="Microsoft.CodeAnalysis.Workspaces">
-      <HintPath>..\..\..\VSTranslate\VSTranslate\packages\Microsoft.CodeAnalysis.Workspaces.Common.1.2.1\lib\net45\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+    <Reference Include="glosbeClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\glosbeClient\glosbeClient\bin\Release\glosbeClient.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualStudio.LanguageServices">
-      <HintPath>..\..\..\VSTranslate\VSTranslate\packages\Microsoft.VisualStudio.LanguageServices.1.2.1\lib\net46\Microsoft.VisualStudio.LanguageServices.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.Text.UI.Wpf, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -164,7 +161,6 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <Content Include="CustomMoniker.imagemanifest">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <None Include="packages.config" />
     <None Include="project.json" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>

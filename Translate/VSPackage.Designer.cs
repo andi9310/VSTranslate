@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Samples.VisualStudio.MenuCommands {
+namespace VSTranslate {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Microsoft.Samples.VisualStudio.MenuCommands {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Microsoft.Samples.VisualStudio.MenuCommands.VSPackage", typeof(VSPackage).Assembly);
+                    var temp = new global::System.Resources.ResourceManager("VSTranslate.VSPackage", typeof(VSPackage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -83,7 +83,7 @@ namespace Microsoft.Samples.VisualStudio.MenuCommands {
         /// </summary>
         internal static System.Drawing.Icon _400 {
             get {
-                object obj = ResourceManager.GetObject("400", resourceCulture);
+                var obj = ResourceManager.GetObject("400", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
