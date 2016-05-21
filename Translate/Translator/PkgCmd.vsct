@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h" />
+
+  <Extern href="vsshlids.h"/>
+
+  <Include href="KnownImageIds.vsct"/>
+
+  <Commands package="guidMenuAndCommandsPkg">
+    <Groups>
+      <Group guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup" priority="0x600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
+    </Groups>
+    <Buttons>
+      <Button guid="guidMenuAndCommandsCmdSet" id="cmdidDynamicTxt" priority="0x200" type="Button">
+        <Parent guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup"/>
+        <CommandFlag>TextChanges</CommandFlag>
+        <Strings>
+          <ButtonText>Translate</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+
+  <!--<CommandPlacements>
+    <CommandPlacement guid="guidMenuAndCommandsCmdSet" id="cmdidDynamicTxt" priority="0x200">
+      <Parent guid="guidMenuAndCommandsCmdSet" id="MyEditorCtxGroup"/>
+    </CommandPlacement>
+  </CommandPlacements>-->
+  <KeyBindings>
+    <KeyBinding guid="guidMenuAndCommandsCmdSet" id="cmdidDynamicTxt" editor="guidVSStd97" key1="1" mod1="Control" />
+  </KeyBindings>
+  <Symbols>
+    <GuidSymbol name="guidMenuAndCommandsPkg" value="{3C7C5ABE-82AC-4A37-B077-0FF60E8B1FD3}" />
+    <GuidSymbol name="guidMenuAndCommandsCmdSet" value="{19492BCB-32B3-4EC3-8826-D67CD5526653}">
+      <IDSymbol name="MyEditorCtxGroup" value="0x1013" />
+      <IDSymbol name="cmdidDynamicTxt" value="0x2004" />
+    </GuidSymbol>
+
+  </Symbols>
+</CommandTable>

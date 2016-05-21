@@ -2,13 +2,8 @@
 
 namespace VSTranslate
 {
-    /// <summary>
-    /// This class is used only to expose the list of Guids used by this package.
-    /// This list of guids must match the set of Guids used inside the VSCT file.
-    /// </summary>
     internal static class GuidsList
     {
-        // Now define the list of guids as public static members.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         public static readonly Guid GuidMenuAndCommandsPkg = new Guid("{3C7C5ABE-82AC-4A37-B077-0FF60E8B1FD3}");
         public const string GuidMenuAndCommandsPkgString = "3C7C5ABE-82AC-4A37-B077-0FF60E8B1FD3";

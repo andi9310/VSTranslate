@@ -1,25 +1,16 @@
-﻿/***************************************************************************
- 
-Copyright (c) Microsoft Corporation. All rights reserved.
-THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
-ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
-IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
-PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
-
-***************************************************************************/
-
+﻿
 using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MenuAndCommands")]
-[assembly: AssemblyDescription("VsSDK reference sample for Menus and Commands")]
+[assembly: AssemblyTitle("VSTranslate")]
+[assembly: AssemblyDescription("Translator for VS")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("MenuAndCommands")]
-[assembly: AssemblyCopyright("Copyright © Microsoft")]
+[assembly: AssemblyCompany("lel.lu")]
+[assembly: AssemblyProduct("VSTranslate")]
+[assembly: AssemblyCopyright("Copyright © lel.lu")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

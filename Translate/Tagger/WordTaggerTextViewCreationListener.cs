@@ -13,7 +13,6 @@ namespace VSTranslate
         [Import]
         internal ITextStructureNavigatorSelectorService TextStructureNavigatorSelector { get; set; }
        
-        // Disable "Field is never assigned to..." and "Field is never used" compiler's warnings. Justification: the field is used by MEF.
 #pragma warning disable 649, 169
         [Export(typeof(AdornmentLayerDefinition))]
         [Name("WordTagger")]

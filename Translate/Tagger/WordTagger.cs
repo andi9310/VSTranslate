@@ -13,7 +13,6 @@ namespace VSTranslate
     internal sealed class WordTagger
     {
         private ITextStructureNavigator TextStructureNavigator { get; }
-        private readonly glosbeClient.GlosbeClient _client = new glosbeClient.GlosbeClient();
 
         private readonly IAdornmentLayer _layer;
 
@@ -63,7 +62,7 @@ namespace VSTranslate
                 if (WordExtentIsValid(charIndex, word))
                 { 
                     charIndex = charIndex.Add(word.Span.Length);
-                    var trans = _client.GetTranslations(word.Span.GetText().ToLower());
+                    var trans = TranslationsProvider.Translator.GetTranslations(word.Span.GetText().ToLower());
                     if (trans.Any()) continue;
                     var geometry = textViewLines.GetMarkerGeometry(word.Span);
                     var drawing = new GeometryDrawing(_brush, _pen, geometry);

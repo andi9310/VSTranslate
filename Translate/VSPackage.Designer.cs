@@ -39,7 +39,7 @@ namespace VSTranslate {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    var temp = new global::System.Resources.ResourceManager("VSTranslate.VSPackage", typeof(VSPackage).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VSTranslate.VSPackage", typeof(VSPackage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -79,17 +79,7 @@ namespace VSTranslate {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon _400 {
-            get {
-                var obj = ResourceManager.GetObject("400", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to C# Text Changes.
+        ///   Looks up a localized string similar to Translate all occurences of.
         /// </summary>
         internal static string DynamicTextBaseText {
             get {
@@ -98,11 +88,20 @@ namespace VSTranslate {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} (Clicked {1} times).
+        ///   Looks up a localized string similar to {0} {1} to {2}.
         /// </summary>
         internal static string DynamicTextFormat {
             get {
                 return ResourceManager.GetString("DynamicTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No translations available.
+        /// </summary>
+        internal static string NoTranslations {
+            get {
+                return ResourceManager.GetString("NoTranslations", resourceCulture);
             }
         }
     }

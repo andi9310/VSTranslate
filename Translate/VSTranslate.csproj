@@ -59,7 +59,6 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualStudio.Text.UI.Wpf, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -93,18 +92,19 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="DynamicTextCommand.cs" />
-    <Compile Include="Guids.cs" />
-    <Compile Include="PkgCmdId.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Translator\DynamicTextCommand.cs" />
+    <Compile Include="Translator\Guids.cs" />
+    <Compile Include="Translator\PkgCmdId.cs" />
+    <Compile Include="Translator\GlobalSuppressions.cs" />
+    <Compile Include="Translator\TranslationsProvider.cs" />
     <Compile Include="VSPackage.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VSPackage.resx</DependentUpon>
     </Compile>
-    <Compile Include="VsPkg.cs" />
-    <Compile Include="WordTagger.cs" />
-    <Compile Include="WordTaggerTextViewCreationListener.cs" />
+    <Compile Include="Translator\VsPkg.cs" />
+    <Compile Include="Tagger\WordTagger.cs" />
+    <Compile Include="Tagger\WordTaggerTextViewCreationListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VSPackage.resx">
@@ -115,39 +115,18 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CustomMoniker.vsct" />
-    <Content Include="CustomMoniker.imagemanifest">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <None Include="project.json" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="PkgCmd.vsct">
+    <VSCTCompile Include="Translator\PkgCmd.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Example.MenuAndCommands.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Resource Include="Resources\Application.16.16.png" />
-    <Content Include="Resources\Package.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Resources\Application.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
